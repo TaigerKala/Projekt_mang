@@ -1,10 +1,8 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Assets/Sprited/Mini Golem Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Vaenlased/Golem/Golem.gd" type="Script" id=2]
-
-[sub_resource type="CircleShape2D" id=54]
-radius = 13.0
+[ext_resource path="res://Assets/Vaenlased/Golem/DmgArea.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 1 )
@@ -149,6 +147,9 @@ animations = [ {
 "name": "take_dmg",
 "speed": 5.0
 } ]
+
+[sub_resource type="CircleShape2D" id=54]
+radius = 24.0
 
 [sub_resource type="Animation" id=32]
 resource_name = "atk_punch"
@@ -331,7 +332,7 @@ states/atk_punch/position = Vector2( 135, 80 )
 states/death/node = SubResource( 38 )
 states/death/position = Vector2( 560, 340 )
 states/idle/node = SubResource( 39 )
-states/idle/position = Vector2( 349, 210 )
+states/idle/position = Vector2( 351, 210 )
 states/move/node = SubResource( 40 )
 states/move/position = Vector2( 560, 80 )
 states/take_dmg/node = SubResource( 41 )
@@ -339,27 +340,31 @@ states/take_dmg/position = Vector2( 135, 340 )
 transitions = [ "idle", "atk_punch", SubResource( 42 ), "atk_punch", "idle", SubResource( 43 ), "move", "idle", SubResource( 44 ), "idle", "move", SubResource( 45 ), "idle", "take_dmg", SubResource( 47 ), "take_dmg", "idle", SubResource( 48 ), "atk_punch", "take_dmg", SubResource( 49 ), "take_dmg", "death", SubResource( 50 ), "move", "atk_punch", SubResource( 51 ) ]
 start_node = "idle"
 end_node = "death"
-graph_offset = Vector2( -59, 40.9262 )
+graph_offset = Vector2( -94, 48.9262 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=53]
 
 [sub_resource type="CircleShape2D" id=55]
 radius = 200.0
 
+[sub_resource type="CapsuleShape2D" id=56]
+radius = 16.0
+height = 92.0
+
 [node name="Golem" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, -11 )
-shape = SubResource( 54 )
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -2, -32 )
-scale = Vector2( 2, 2 )
+position = Vector2( 0, -64 )
+scale = Vector2( 4, 4 )
 frames = SubResource( 30 )
 animation = "idle"
-frame = 1
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, -24 )
+shape = SubResource( 54 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite")
@@ -376,8 +381,18 @@ active = true
 parameters/playback = SubResource( 53 )
 
 [node name="AggroArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
 shape = SubResource( 55 )
+
+[node name="DmgArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgArea"]
+position = Vector2( 8, -16 )
+rotation = 1.5708
+shape = SubResource( 56 )

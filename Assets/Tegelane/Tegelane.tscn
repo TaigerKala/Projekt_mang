@@ -3,9 +3,6 @@
 [ext_resource path="res://Assets/Sprited/Dwarf Sprite Sheet 1.3v.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tegelane/Tegelane.gd" type="Script" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-height = 0.0
-
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 64, 64, 32 )
@@ -224,6 +221,10 @@ animations = [ {
 "name": "move",
 "speed": 5.0
 } ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 16.0
+height = 16.0
 
 [sub_resource type="Animation" id=25]
 resource_name = "atk_slam"
@@ -448,20 +449,21 @@ graph_offset = Vector2( -51, 8.19727 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 
 [node name="Tegelane" type="KinematicBody2D"]
+collision_mask = 0
 script = ExtResource( 2 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 5.96046e-08, -32 )
+scale = Vector2( 2.5, 2.5 )
+frames = SubResource( 7 )
+frame = 1
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, -9 )
+position = Vector2( 0, -24 )
 shape = SubResource( 1 )
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 14, -14 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 1, -30 )
-scale = Vector2( 2.4375, 2.4375 )
-frames = SubResource( 7 )
-frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1

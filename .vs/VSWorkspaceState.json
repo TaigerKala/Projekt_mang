@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Assets"
+    "\\Assets",
+    "\\Assets\\Vaenlased",
+    "\\Assets\\Vaenlased\\Golem",
+    "\\Dokumentatsioon",
+    "\\Test"
   ],
-  "SelectedNode": "\\Assets",
+  "SelectedNode": "\\Assets\\Vaenlased\\Golem\\Golem.gd",
   "PreviewInSolutionExplorer": false
 }
