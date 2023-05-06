@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Assets/Sprited/Mini Golem Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Vaenlased/Golem/Golem.gd" type="Script" id=2]
@@ -343,10 +343,14 @@ graph_offset = Vector2( -59, 40.9262 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=53]
 
+[sub_resource type="CircleShape2D" id=55]
+radius = 200.0
+
 [node name="Golem" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -11 )
 shape = SubResource( 54 )
 
@@ -355,6 +359,7 @@ position = Vector2( -2, -32 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 30 )
 animation = "idle"
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite")
@@ -369,3 +374,10 @@ tree_root = SubResource( 52 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 53 )
+
+[node name="AggroArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource( 55 )
