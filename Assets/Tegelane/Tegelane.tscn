@@ -448,7 +448,7 @@ graph_offset = Vector2( -51, 8.19727 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 
-[node name="Tegelane" type="KinematicBody2D"]
+[node name="Tegelane" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 0
 script = ExtResource( 2 )
 
@@ -456,7 +456,6 @@ script = ExtResource( 2 )
 position = Vector2( 5.96046e-08, -32 )
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 7 )
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -24 )
