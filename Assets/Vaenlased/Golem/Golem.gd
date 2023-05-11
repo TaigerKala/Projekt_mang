@@ -27,25 +27,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#Golemi liikumine
-	var direction := Vector2.ZERO
-	
-	if state == GolemState.ATK_PUNCH:
-		pass
-	else:
-		if target:
-			direction = to_local(target.global_position).normalized()
-			set_state(GolemState.MOVE)
-		
-	#Suuna muutus
-		var desired_velocity := max_speed * direction
-		var steering_vector := desired_velocity - velocity
-	
-		velocity += steering_vector * drag_factor
-	
-		velocity = move_and_slide(velocity)
-	
-		if direction == Vector2.ZERO:
-			set_state(GolemState.IDLE)
+	golem_movement()
 	
 func set_state(new_state):
 	state = new_state
@@ -66,7 +48,6 @@ func enter_new_state(state):
 
 func _on_player_entered(body: KinematicBody2D) -> void:
 	target = body
-	set_state(GolemState.MOVE)
 	
 func _on_player_exited(body: KinematicBody2D) -> void:
 	target = null
@@ -74,3 +55,17 @@ func _on_player_exited(body: KinematicBody2D) -> void:
 func _initiate_atk(body: KinematicBody2D) -> void:
 	if body.is_in_group("Player"):
 		set_state(GolemState.ATK_PUNCH)
+		
+func golem_movement() -> void:
+		var direction := Vector2.ZERO
+		
+		if target:
+			direction = to_local(target.global_position).normalized()
+		
+	#Suuna muutus
+		var desired_velocity := max_speed * direction
+		var steering_vector := desired_velocity - velocity
+	
+		velocity += steering_vector * drag_factor
+	
+		velocity = move_and_slide(velocity)
