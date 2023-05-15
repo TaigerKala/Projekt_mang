@@ -1,7 +1,8 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Assets/Sprited/Dwarf Sprite Sheet 1.3v.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tegelane/Tegelane.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Tegelane/AtkHitbox.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 1 )
@@ -223,8 +224,62 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 16.0
-height = 16.0
+radius = 6.0
+height = 0.0
+
+[sub_resource type="RectangleShape2D" id=73]
+extents = Vector2( 19.5001, 28 )
+
+[sub_resource type="Animation" id=74]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AtkHitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AtkHitbox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 32, -13 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AtkHitbox/CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AtkHitbox/CollisionShape2D:shape:extents")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 19.5001, 28 ) ]
+}
 
 [sub_resource type="Animation" id=25]
 resource_name = "atk_slam"
@@ -270,6 +325,44 @@ tracks/2/keys = {
 "method": "start_physics"
 } ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("AtkHitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AtkHitbox/CollisionShape2D:shape:extents")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 8.49999, 10.5 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0, 0.0 ],
+"method": "flip_hitbox"
+} ]
+}
 
 [sub_resource type="Animation" id=41]
 resource_name = "atk_slash"
@@ -298,6 +391,61 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0, 5 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AtkHitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop_physics"
+}, {
+"args": [  ],
+"method": "start_physics"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AtkHitbox/CollisionShape2D:shape:extents")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10.5, 5.49997 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ -3.0, 11.0 ],
+"method": "flip_hitbox"
+} ]
+}
 
 [sub_resource type="Animation" id=66]
 resource_name = "atk_spin"
@@ -325,6 +473,42 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 2,
 "values": [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AtkHitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AtkHitbox/CollisionShape2D:shape:extents")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 12.5, 5.49998 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AtkHitbox/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7.00003, 9.99998 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -444,7 +628,7 @@ states/move/node = SubResource( 27 )
 states/move/position = Vector2( 527, 66 )
 transitions = [ "idle", "move", SubResource( 28 ), "idle", "atk_slam", SubResource( 33 ), "atk_slam", "idle", SubResource( 34 ), "idle", "atk_slash", SubResource( 43 ), "atk_slash", "idle", SubResource( 44 ), "move", "atk_slash", SubResource( 45 ), "move", "atk_slam", SubResource( 46 ), "move", "idle", SubResource( 47 ), "idle", "atk_spin", SubResource( 68 ), "atk_spin", "idle", SubResource( 69 ), "move", "atk_spin", SubResource( 70 ), "atk_slash", "atk_slam", SubResource( 71 ), "atk_slash", "atk_spin", SubResource( 72 ) ]
 start_node = "idle"
-graph_offset = Vector2( -51, 8.19727 )
+graph_offset = Vector2( -62, 124.197 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 
@@ -453,19 +637,30 @@ collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 5.96046e-08, -32 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 0, -12 )
 frames = SubResource( 7 )
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -24 )
+position = Vector2( 0, -8 )
 shape = SubResource( 1 )
 
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 14, -14 )
+[node name="AtkHitbox" type="Area2D" parent="."]
+position = Vector2( 7, -14 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+collision_mask = 17
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkHitbox"]
+position = Vector2( 32, -13 )
+scale = Vector2( 2, 1 )
+shape = SubResource( 73 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1
+anims/RESET = SubResource( 74 )
 anims/atk_slam = SubResource( 25 )
 anims/atk_slash = SubResource( 41 )
 anims/atk_spin = SubResource( 66 )

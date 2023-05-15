@@ -394,6 +394,8 @@ __meta__ = {
 }
 
 [node name="Tegelane" parent="." instance=ExtResource( 2 )]
+position = Vector2( -160, -64 )
 
 [node name="Camera2D" type="Camera2D" parent="Tegelane"]
 current = true
+zoom = Vector2( 0.4, 0.4 )
