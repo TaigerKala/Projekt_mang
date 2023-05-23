@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player
+
 onready var animation_player := $AnimationPlayer
 onready var pilt := $AnimatedSprite
 onready var animation_tree := $AnimationTree

@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name Enemy
 
+signal health_zero
+
 enum GolemState {
 	IDLE,
 	MOVE,
@@ -23,12 +25,13 @@ onready var dmg_area := $DmgArea
 onready var animation_tree := $AnimationTree
 onready var state_machine = animation_tree.get("parameters/playback")
 
-onready var health := max_health
+onready var health := clamp(max_health, 0.0, max_health)
 
 func _ready() -> void:
 	aggro_area.connect("body_entered", self, "_on_player_entered")
 	aggro_area.connect("body_exited", self, "_on_player_exited")
 	dmg_area.connect("body_entered", self, "_initiate_atk")
+	add_to_group("Enemy")
 
 func _physics_process(delta: float) -> void:
 	#Golemi liikumine
@@ -77,5 +80,10 @@ func golem_movement() -> void:
 
 func take_dmg(damage: float) -> void:
 	health -= damage
+	
+	if health < 0:
+		queue_free()
+		emit_signal("health_zero")
+		print("health zero")
 	print("Golem took dmg")
 	print(health)

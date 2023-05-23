@@ -362,7 +362,7 @@ graph_offset = Vector2( -187, 28.9262 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=53]
 
 [sub_resource type="CircleShape2D" id=55]
-radius = 200.0
+radius = 1198.06
 
 [sub_resource type="CapsuleShape2D" id=56]
 radius = 7.99996
@@ -376,7 +376,7 @@ script = ExtResource( 2 )
 position = Vector2( 0, -16 )
 frames = SubResource( 30 )
 animation = "idle"
-frame = 3
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, -6 )
